@@ -1,0 +1,10 @@
+{
+    "name": "laughing-computing-machine",
+    "version": "0.1.0",
+    "private": false,
+    "scripts": {
+      "back": "cd backend && yarn develop && cd ..",
+      "front": "cd frontend && yarn start && cd .."
+    }
+  }
+  
