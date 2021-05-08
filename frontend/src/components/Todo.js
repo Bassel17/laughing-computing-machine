@@ -1,8 +1,32 @@
+import { useMutation, useQueryClient } from "react-query";
+
+import { updateTodo } from "../apis";
+
 export default function Todo(props) {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(updateTodo, {
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries("todos");
+    },
+  });
+
   return (
     <div className="Todo">
-      <input type="checkbox" value={props.isDone} />
-      <p>{props.text}</p>
+      <input
+        type="checkbox"
+        defaultChecked={props.isDone}
+        onChange={() => {
+          mutation.mutate({
+            isDone: !props.isDone,
+            id: props.id,
+          });
+        }}
+      />
+      <p style={{ textDecoration: props.isDone ? "line-through" : "none" }}>
+        {props.text}
+      </p>
     </div>
   );
 }

@@ -31,7 +31,7 @@ function App() {
       </header>
       <AddTodo />
       {data.map((todo) => (
-        <Todo key={todo.id} text={todo.text} isDone={todo.is_done} />
+        <Todo key={todo.id} text={todo.text} isDone={todo.is_done} id={todo.id} />
       ))}
     </div>
   );
