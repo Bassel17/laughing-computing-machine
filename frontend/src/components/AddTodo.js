@@ -1,7 +1,21 @@
 import { useState } from "react";
 
+import { useMutation, useQueryClient } from "react-query";
+
+import { addTodo } from "../apis";
+
 export default function AddTodo() {
   const [todo, setTodo] = useState("");
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(addTodo, {
+    onSuccess: () => {
+      // Invalidate and refetch
+      setTodo("")
+      queryClient.invalidateQueries("todos");
+    },
+  });
 
   return (
     <div>
@@ -9,13 +23,12 @@ export default function AddTodo() {
         value={todo}
         onChange={(event) => {
           setTodo(event.target.value);
-          console.log(event.target.value)
         }}
         type="text"
       />
       <button
         onClick={() => {
-          console.log("clicked");
+          mutation.mutate(todo);
         }}
       >
         Add

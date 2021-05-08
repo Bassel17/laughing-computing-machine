@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "todos",
   "info": {
-    "name": "Todo"
+    "name": "Todo",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -15,7 +16,8 @@
       "type": "string"
     },
     "is_done": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     }
   }
 }
