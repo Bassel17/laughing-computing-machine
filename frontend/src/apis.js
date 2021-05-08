@@ -30,3 +30,10 @@ export async function updateTodo({isDone, id}) {
   });
   return response.json();
 }
+
+export async function deleteTodo(id) {
+    const response = await fetch(`${apiUrl}/todos/${id}`, {
+      method: "Delete",
+    });
+    return response.json();
+}
